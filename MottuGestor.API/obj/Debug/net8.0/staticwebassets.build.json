@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "wQsXdTqh5LH3WArndn4XkW+4uIcqbpOfEdrn6N6C8ac=",
+  "Source": "MottuGestor.API",
+  "BasePath": "_content/MottuGestor.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

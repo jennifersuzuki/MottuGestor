@@ -1,51 +1,79 @@
+
 using MottuGestor.Domain.Enums;
-using MottuGestor.Domain.ValueObjects;
 
-namespace MottuGestor.Domain.Entities;
-
-
-public class Moto
+namespace MottuGestor.Domain.Entities
 {
-    public Guid Id { get; private set; } = Guid.NewGuid();
-    public Placa Placa { get; private set; }
-    public string Modelo { get; private set; }
-    public string Marca { get; private set; }
-    public string RfidTag { get; private set; }
-    public int Ano { get; private set; }
-    public DateTime DataCadastro { get; private set; } = DateTime.UtcNow;
-    public string? Problema { get; private set; }
-    public StatusMoto Status { get; private set; } = StatusMoto.Disponivel;
-
-
-    public Guid? PatioId { get; private set; }
-
-
-    public Moto(string rfidTag, Placa placa, string modelo, string marca, int ano)
+    public class Moto
     {
-        if (string.IsNullOrWhiteSpace(modelo)) throw new ArgumentException("Modelo obrigatório");
-        if (string.IsNullOrWhiteSpace(marca)) throw new ArgumentException("Marca obrigatória");
-        if (ano < 1990) throw new ArgumentOutOfRangeException(nameof(ano));
+        public Guid MotoId { get; private set; }
+        public string Placa { get; private set; } = string.Empty;
+        public string Modelo { get; private set; } = string.Empty;
+        public string Marca { get; private set; } = string.Empty;
+        public string RfidTag { get; private set; } = string.Empty;
+        public int Ano { get; private set; }
+        public DateTime DataCadastro { get; private set; }
+        public string Problema { get; private set; } = string.Empty;
+        public string Localizacao { get; private set; } = string.Empty;
+        public StatusMoto Status { get; private set; }
+
+        // Construtor que garante que RFID e demais dados sejam fornecidos ao criar
+        public Moto(string rfidTag, string placa, string modelo, string marca, int ano, string problema = null, string localizacao = null)
+        {
+            MotoId = Guid.NewGuid();
+            RfidTag = ValidateRfid(rfidTag);
+            Placa = placa;
+            Modelo = modelo;
+            Marca = marca;
+            Ano = ano;
+            Problema = problema;
+            Localizacao = localizacao;
+            DataCadastro = DateTime.UtcNow;
+            Status = StatusMoto.Disponivel;
+        }
+
+        // Validação simples para RFID
+        private string ValidateRfid(string rfid)
+        {
+            if (string.IsNullOrWhiteSpace(rfid))
+                throw new ArgumentException("RfidTag não pode ser vazia.");
+
+            return rfid;
+        }
+
+        // Construtor vazio para EF
+        public Moto()
+        {
+            DataCadastro = DateTime.UtcNow;
+            Status = StatusMoto.Disponivel;
+        }
+
+        // Métodos para alterar campos, se quiser controlar modificações:
+        public void AtualizarLocalizacao(string novaLocalizacao)
+        {
+            Localizacao = novaLocalizacao;
+        }
+
+        public void AtualizarProblema(string novoProblema)
+        {
+            Problema = novoProblema;
+        }
+
+        public void AlterarStatus(StatusMoto novoStatus)
+        {
+            Status = novoStatus;
+        }
+
+        public void AtualizarDados(string rfidTag, string placa, string modelo, string marca, int ano, string problema, string localizacao)
+        {
+            RfidTag = rfidTag;
+            Placa = placa;
+            Modelo = modelo;
+            Marca = marca;
+            Ano = ano;
+            Problema = problema;
+            Localizacao = localizacao;
+        }
 
 
-        RfidTag = rfidTag;
-        Placa = placa;
-        Modelo = modelo.Trim();
-        Marca = marca.Trim();
-        Ano = ano;
     }
-
-
-    private Moto() { } // EF
-
-
-    public void MarcarProblema(string? descricao)
-    {
-        Problema = string.IsNullOrWhiteSpace(descricao) ? null : descricao.Trim();
-        if (Problema is not null) Status = StatusMoto.EmManutencao;
-        else if (Status == StatusMoto.EmManutencao) Status = StatusMoto.Disponivel;
-    }
-
-
-    internal void SetPatio(Guid patioId) { PatioId = patioId; Status = StatusMoto.EmUso; }
-    internal void RemoverDoPatio() { PatioId = null; if (Status == StatusMoto.EmUso) Status = StatusMoto.Disponivel; }
 }

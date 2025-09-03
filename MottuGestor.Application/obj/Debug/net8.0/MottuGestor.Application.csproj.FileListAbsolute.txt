@@ -1,0 +1,16 @@
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\bin\Debug\net8.0\MottuGestor.Application.deps.json
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\bin\Debug\net8.0\MottuGestor.Application.dll
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\bin\Debug\net8.0\MottuGestor.Application.pdb
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\bin\Debug\net8.0\MottuGestor.Domain.dll
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\bin\Debug\net8.0\MottuGestor.Domain.pdb
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\MottuGestor.Application.csproj.AssemblyReference.cache
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\MottuGestor.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\MottuGestor.Application.AssemblyInfoInputs.cache
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\MottuGestor.Application.AssemblyInfo.cs
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\MottuGestor.Application.csproj.CoreCompileInputs.cache
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\MottuGestor.Application.sourcelink.json
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\MottuGes.37501344.Up2Date
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\MottuGestor.Application.dll
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\refint\MottuGestor.Application.dll
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\MottuGestor.Application.pdb
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Application\obj\Debug\net8.0\ref\MottuGestor.Application.dll

@@ -1,6 +1,6 @@
 namespace MottuGestor.Domain.Interfaces;
 
-public class IMotoRepository
+public interface IMotoRepository
 {
     
 }

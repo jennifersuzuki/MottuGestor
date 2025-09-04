@@ -273,7 +273,6 @@ C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\Mic
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
-C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\Mono.TextTemplating.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\NuGet.Common.dll
@@ -296,11 +295,8 @@ C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\Sys
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\System.Composition.TypedParts.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
-C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\System.Drawing.Common.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\System.Reflection.MetadataLoadContext.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\System.Security.Permissions.dll
-C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\System.Windows.Extensions.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\af\Humanizer.resources.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\ar\Humanizer.resources.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\az\Humanizer.resources.dll
@@ -440,10 +436,6 @@ C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\ru\
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
-C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\MottuGestor.Application.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\MottuGestor.Domain.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\MottuGestor.Infrastructure.dll
@@ -518,3 +510,15 @@ C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\run
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.Api\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.API\bin\Debug\net8.0\Oracle.EntityFrameworkCore.dll
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.API\bin\Debug\net8.0\Oracle.ManagedDataAccess.dll
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.API\bin\Debug\net8.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.API\bin\Debug\net8.0\System.DirectoryServices.Protocols.dll
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.API\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.API\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.API\bin\Debug\net8.0\runtimes\linux\lib\net8.0\System.DirectoryServices.Protocols.dll
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.API\bin\Debug\net8.0\runtimes\osx\lib\net8.0\System.DirectoryServices.Protocols.dll
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.API\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.DirectoryServices.Protocols.dll
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.API\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.API\bin\Debug\net8.0\MottuGestor.API.xml
+C:\Users\labsfiap\RiderProjects\MottuGestor\MottuGestor.API\obj\Debug\net8.0\MottuGestor.API.xml

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Api\\MottuGestor.API.csproj": {}
+    "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.API\\MottuGestor.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Api\\MottuGestor.API.csproj": {
+    "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.API\\MottuGestor.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Api\\MottuGestor.API.csproj",
+        "projectUniqueName": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.API\\MottuGestor.API.csproj",
         "projectName": "MottuGestor.API",
-        "projectPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Api\\MottuGestor.API.csproj",
+        "projectPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.API\\MottuGestor.API.csproj",
         "packagesPath": "C:\\Users\\labsfiap\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.Api\\obj\\",
+        "outputPath": "C:\\Users\\labsfiap\\RiderProjects\\MottuGestor\\MottuGestor.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -81,6 +81,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[8.0.7, )"
+            },
+            "Oracle.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.23.90, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -317,6 +321,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[9.0.8, )"
+            },
+            "Oracle.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.23.90, )"
             }
           },
           "imports": [

@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MottuGestor.Domain.Entities;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc;
 using MottuGestor.API.Models;
+using MottuGestor.Domain.Entities;
 using MottuGestor.Infrastructure.Repositories;
-using System.Net;
 
 namespace MottuGestor.API.Controllers
 {

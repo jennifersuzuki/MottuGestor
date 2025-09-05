@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc;
 using MottuGestor.API.Models;
-using MottuGestor.Domain.Enums;
 using MottuGestor.Domain.Entities;
+using MottuGestor.Domain.Enums;
 using MottuGestor.Infrastructure.Repositories;
-using System.Net;
 
 namespace MottuGestor.API.Controllers
 {
@@ -85,8 +85,8 @@ namespace MottuGestor.API.Controllers
                     modelo: input.Modelo,
                     marca: input.Marca,
                     ano: input.Ano,
-                    problema: input.Problema
-                    // localizacao: input.Localizacao
+                    problema: input.Problema,
+                    localizacao: input.Localizacao
                 );
 
                 await _motoRepository.AddAsync(moto);

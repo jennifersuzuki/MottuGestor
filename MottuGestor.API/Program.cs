@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
-using MottuGestor.Infrastructure.Context;
 using MottuGestor.Domain.Entities;
+using MottuGestor.Infrastructure.Context;
 using MottuGestor.Infrastructure.Repositories;
 
 namespace GestMottu.API

@@ -36,8 +36,9 @@ namespace MottuGestor.Infrastructure.Mappings
             builder.Property(m => m.Problema)
                 .HasMaxLength(200);
 
-            // builder.Property(m => m.Localizacao)
-            //     .HasMaxLength(100);
+            builder.Property(m => m.Localizacao)
+                .IsRequired()
+                .HasMaxLength(200);
 
             builder.Property(m => m.Status)
                 .IsRequired();

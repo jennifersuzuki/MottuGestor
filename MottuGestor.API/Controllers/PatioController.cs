@@ -50,7 +50,7 @@ namespace MottuGestor.API.Controllers
                 patios = patios.Where(p => p.Nome.ToLower().Contains(nome.ToLower())).ToList();
 
             if (!string.IsNullOrWhiteSpace(endereco))
-                patios = patios.Where(p => p.Endereco.ToLower().Contains(endereco.ToLower())).ToList();
+                patios = patios.Where(p => p.Endereco.ToString().ToLower().Contains(endereco.ToLower())).ToList();
 
             if (capacidadeMinima.HasValue)
                 patios = patios.Where(p => p.Capacidade >= capacidadeMinima).ToList();

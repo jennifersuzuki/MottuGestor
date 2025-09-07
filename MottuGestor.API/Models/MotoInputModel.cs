@@ -7,7 +7,8 @@ namespace MottuGestor.API.Models
         [Required]
         public required string RfidTag { get; set; }
 
-        [Required]
+        [Required, RegularExpression(@"^(?:[A-Z]{3}-?\d{4}|[A-Z]{3}\d[A-Z]\d{2})$", 
+             ErrorMessage = "Placa inválida (use AAA-1234 ou AAA1A23).")]
         public required string Placa { get; set; }
 
         [Required]
@@ -16,7 +17,7 @@ namespace MottuGestor.API.Models
         [Required]
         public required string Marca { get; set; }
 
-        [Required]
+        [Required, Range(1800, 2026, ErrorMessage = "Ano deve ser >= 1800.")]
         public int Ano { get; set; }
 
         public string? Problema { get; set; }

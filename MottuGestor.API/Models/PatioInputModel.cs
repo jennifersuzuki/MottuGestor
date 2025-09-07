@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using MottuGestor.Domain.ValueObjects;
 
 namespace MottuGestor.API.Models
 {
@@ -9,8 +10,7 @@ namespace MottuGestor.API.Models
         public string Nome { get; set; }
 
         [Required]
-        [MaxLength(200)]
-        public string Endereco { get; set; }
+        public Endereco Endereco { get; set; }
 
         [Required]
         [Range(1, int.MaxValue, ErrorMessage = "Capacidade deve ser maior que zero.")]

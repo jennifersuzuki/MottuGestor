@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MottuGestor.Domain.Entities;
+using MottuGestor.Domain.ValueObjects;
 
 namespace MottuGestor.Infrastructure.Mappings
 {
@@ -17,6 +18,8 @@ namespace MottuGestor.Infrastructure.Mappings
                    .HasMaxLength(100);
 
             builder.Property(p => p.Endereco)
+                    .HasConversion(new EnderecoConverter())
+                    .HasColumnName("Endereco")
                    .IsRequired()
                    .HasMaxLength(200);
 

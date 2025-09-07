@@ -36,7 +36,8 @@ namespace MottuGestor.Infrastructure.Migrations
 
                     b.Property<string>("Localizacao")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Marca")
                         .IsRequired()
@@ -82,7 +83,8 @@ namespace MottuGestor.Infrastructure.Migrations
                     b.Property<string>("Endereco")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(200)")
+                        .HasColumnName("Endereco");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -92,32 +94,6 @@ namespace MottuGestor.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Patio", (string)null);
-                });
-
-            modelBuilder.Entity("MottuGestor.Domain.Entities.Usuario", b =>
-                {
-                    b.Property<Guid>("UsuarioId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SenhaHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UsuarioId");
-
-                    b.ToTable("Usuarios");
                 });
 #pragma warning restore 612, 618
         }

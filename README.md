@@ -8,6 +8,7 @@ Este projeto para o Challenge, da disciplina **Advanced Business Development wit
 
 - Felipe Levy Stephens Fidelix - RM556426
 - Jennifer Kaori Suzuki  - RM554661
+- Pedro Henrique Jorge de Paula - RM558833
 
 ---
 

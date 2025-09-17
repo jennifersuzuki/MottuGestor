@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MottuGestor.Infrastructure.Context;
 
@@ -11,9 +12,11 @@ using MottuGestor.Infrastructure.Context;
 namespace MottuGestor.Infrastructure.Migrations
 {
     [DbContext(typeof(GestMottuContext))]
-    partial class GestMottuContextModelSnapshot : ModelSnapshot
+    [Migration("20250917164712_UpdateUsuarioTable")]
+    partial class UpdateUsuarioTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

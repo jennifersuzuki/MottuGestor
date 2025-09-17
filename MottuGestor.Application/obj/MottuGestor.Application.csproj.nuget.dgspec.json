@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.Application\\MottuGestor.Application.csproj": {}
+    "C:\\challenge-dotnet\\MottuGestor.Application\\MottuGestor.Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.Application\\MottuGestor.Application.csproj": {
+    "C:\\challenge-dotnet\\MottuGestor.Application\\MottuGestor.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.Application\\MottuGestor.Application.csproj",
+        "projectUniqueName": "C:\\challenge-dotnet\\MottuGestor.Application\\MottuGestor.Application.csproj",
         "projectName": "MottuGestor.Application",
-        "projectPath": "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.Application\\MottuGestor.Application.csproj",
+        "projectPath": "C:\\challenge-dotnet\\MottuGestor.Application\\MottuGestor.Application.csproj",
         "packagesPath": "C:\\Users\\jenni\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.Application\\obj\\",
+        "outputPath": "C:\\challenge-dotnet\\MottuGestor.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\MottuGestor.Domain.csproj": {
-                "projectPath": "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\MottuGestor.Domain.csproj"
+              "C:\\challenge-dotnet\\MottuGestor.Domain\\MottuGestor.Domain.csproj": {
+                "projectPath": "C:\\challenge-dotnet\\MottuGestor.Domain\\MottuGestor.Domain.csproj"
               }
             }
           }
@@ -78,14 +78,14 @@
         }
       }
     },
-    "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\MottuGestor.Domain.csproj": {
+    "C:\\challenge-dotnet\\MottuGestor.Domain\\MottuGestor.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\MottuGestor.Domain.csproj",
+        "projectUniqueName": "C:\\challenge-dotnet\\MottuGestor.Domain\\MottuGestor.Domain.csproj",
         "projectName": "MottuGestor.Domain",
-        "projectPath": "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\MottuGestor.Domain.csproj",
+        "projectPath": "C:\\challenge-dotnet\\MottuGestor.Domain\\MottuGestor.Domain.csproj",
         "packagesPath": "C:\\Users\\jenni\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.Domain\\obj\\",
+        "outputPath": "C:\\challenge-dotnet\\MottuGestor.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

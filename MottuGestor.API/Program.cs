@@ -17,7 +17,11 @@ namespace GestMottu.API
                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                    .AddEnvironmentVariables();
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+                .AddJsonOptions(o =>
+                {
+                    o.JsonSerializerOptions.WriteIndented = true;
+                });;
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(x =>

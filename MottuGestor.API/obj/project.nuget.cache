@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/dWj7ZvJrPQ=",
+  "dgSpecHash": "llqnOahmu+c=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.API\\MottuGestor.API.csproj",
+  "projectFilePath": "C:\\challenge-dotnet\\MottuGestor.API\\MottuGestor.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jenni\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\jenni\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

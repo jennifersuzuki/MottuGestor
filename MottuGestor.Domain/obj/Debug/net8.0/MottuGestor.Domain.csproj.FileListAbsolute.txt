@@ -24,3 +24,16 @@ C:\Users\jenni\RiderProjects\MottuGestor\MottuGestor.Domain\obj\Debug\net8.0\Mot
 C:\Users\jenni\RiderProjects\MottuGestor\MottuGestor.Domain\obj\Debug\net8.0\refint\MottuGestor.Domain.dll
 C:\Users\jenni\RiderProjects\MottuGestor\MottuGestor.Domain\obj\Debug\net8.0\MottuGestor.Domain.pdb
 C:\Users\jenni\RiderProjects\MottuGestor\MottuGestor.Domain\obj\Debug\net8.0\ref\MottuGestor.Domain.dll
+C:\challenge-dotnet\MottuGestor.Domain\bin\Debug\net8.0\MottuGestor.Domain.deps.json
+C:\challenge-dotnet\MottuGestor.Domain\bin\Debug\net8.0\MottuGestor.Domain.dll
+C:\challenge-dotnet\MottuGestor.Domain\bin\Debug\net8.0\MottuGestor.Domain.pdb
+C:\challenge-dotnet\MottuGestor.Domain\obj\Debug\net8.0\MottuGestor.Domain.csproj.AssemblyReference.cache
+C:\challenge-dotnet\MottuGestor.Domain\obj\Debug\net8.0\MottuGestor.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\challenge-dotnet\MottuGestor.Domain\obj\Debug\net8.0\MottuGestor.Domain.AssemblyInfoInputs.cache
+C:\challenge-dotnet\MottuGestor.Domain\obj\Debug\net8.0\MottuGestor.Domain.AssemblyInfo.cs
+C:\challenge-dotnet\MottuGestor.Domain\obj\Debug\net8.0\MottuGestor.Domain.csproj.CoreCompileInputs.cache
+C:\challenge-dotnet\MottuGestor.Domain\obj\Debug\net8.0\MottuGestor.Domain.sourcelink.json
+C:\challenge-dotnet\MottuGestor.Domain\obj\Debug\net8.0\MottuGestor.Domain.dll
+C:\challenge-dotnet\MottuGestor.Domain\obj\Debug\net8.0\refint\MottuGestor.Domain.dll
+C:\challenge-dotnet\MottuGestor.Domain\obj\Debug\net8.0\MottuGestor.Domain.pdb
+C:\challenge-dotnet\MottuGestor.Domain\obj\Debug\net8.0\ref\MottuGestor.Domain.dll

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MottuGestor.Infrastructure.Context;
 
@@ -11,9 +12,11 @@ using MottuGestor.Infrastructure.Context;
 namespace MottuGestor.Infrastructure.Migrations
 {
     [DbContext(typeof(GestMottuContext))]
-    partial class GestMottuContextModelSnapshot : ModelSnapshot
+    [Migration("20250917163520_AddUsuario")]
+    partial class AddUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,34 +97,6 @@ namespace MottuGestor.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Patio", (string)null);
-                });
-
-            modelBuilder.Entity("MottuGestor.Domain.Entities.Usuario", b =>
-                {
-                    b.Property<Guid>("UsuarioId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("SenhaHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UsuarioId");
-
-                    b.ToTable("Usuario", (string)null);
                 });
 #pragma warning restore 612, 618
         }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SpyUNdpxqXA=",
+  "dgSpecHash": "T2Y2zOeXrJ8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jenni\\RiderProjects\\MottuGestor\\MottuGestor.Application\\MottuGestor.Application.csproj",
+  "projectFilePath": "C:\\challenge-dotnet\\MottuGestor.Application\\MottuGestor.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jenni\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.8\\microsoft.entityframeworkcore.9.0.8.nupkg.sha512",
     "C:\\Users\\jenni\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\9.0.8\\microsoft.entityframeworkcore.abstractions.9.0.8.nupkg.sha512",

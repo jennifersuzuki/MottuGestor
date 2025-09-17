@@ -9,8 +9,7 @@ namespace MottuGestor.Infrastructure.Context
         public GestMottuContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<GestMottuContext>();
-
-            // Aqui você coloca sua connection string de desenvolvimento
+            
             optionsBuilder.UseSqlServer("Server=localhost;Database=MottuGestorDb;Trusted_Connection=True;");
 
             return new GestMottuContext(optionsBuilder.Options);

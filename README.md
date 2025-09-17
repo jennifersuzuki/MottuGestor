@@ -72,6 +72,7 @@ dotnet run --project MottuGestor.API
 | PUT    | /api/Moto/{id}    | Atualiza dados de uma moto                  |
 | DELETE | /api/Moto/{id}    | Remove uma moto pelo ID                     |
 | GET    | /api/Moto/filtro  | Busca motos por modelo (query)              |
+| GET    | /api/Moto/paginado| Busca motos com paginação                   |
 
 
 **Exemplo POST**
@@ -96,6 +97,7 @@ dotnet run --project MottuGestor.API
 | PUT    | /api/Patio/{id}    | Atualiza os dados de um pátio existente    |
 | DELETE | /api/Patio/{id}    | Remove um pátio do sistema pelo ID         |
 | GET    | /api/Patio/filtro  | Busca pátios pelo nome informado           |
+| GET    | /api/Patio/paginado| Busca pátios com paginação                 |
 
 **Exemplo POST**
 ```json
@@ -110,3 +112,13 @@ dotnet run --project MottuGestor.API
   "capacidade": 200
 }
 ```
+### Usuario
+| Método | Endpoint           | Descrição                       |
+|--------|--------------------|--------------------------------|
+| GET    | /api/Usuario         | Lista todos os usuários cadastrados      |
+| GET    | /api/Usuario/{id}    | Consulta usuário por ID                  |
+| POST   | /api/Usuario         | Cadastra novo usuário                    |
+| PUT    | /api/Usuario/{id}    | Atualiza dados de um usuário             |
+| DELETE | /api/Usuario/{id}    | Remove uma usuário pelo ID               |
+| GET    | /api/Usuario/filtro  | Busca usuários por modelo (query)        |
+| GET    | /api/Usuario/paginado| Busca usuários com paginação             |

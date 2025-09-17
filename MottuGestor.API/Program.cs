@@ -32,7 +32,7 @@ namespace GestMottu.API
                     Description = "API RESTful para gestão de motos com Clean Architecture e DDD",
                     Contact = new OpenApiContact
                     {
-                        Name = "Equipe GestMottu",
+                        Name = "Equipe MottuGestor",
                         Email = "contato@mottu.com.br"
                     }
                 });

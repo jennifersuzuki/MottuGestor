@@ -1,4 +1,5 @@
 ﻿using MottuGestor.Domain.Entities;
+using MottuGestor.Domain.Pagination;
 
 namespace MottuGestor.Infrastructure.Repositories
 {

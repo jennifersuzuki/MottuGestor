@@ -27,5 +27,7 @@ namespace MottuGestor.Domain.Entities
             Endereco = endereco;
             Capacidade = capacidade;
         }
+        
+        public record PatioResponse(Guid Id, string Nome, string Endereco, int Capacidade);
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MottuGestor.API.Models;
 using MottuGestor.Domain.Entities;
+using MottuGestor.Domain.Pagination;
 using MottuGestor.Infrastructure.Context;
 using MottuGestor.Infrastructure.Repositories;
 
@@ -169,6 +170,55 @@ namespace MottuGestor.API.Controllers
             {
                 return BadRequest($"Erro ao excluir usuário: {ex.Message}");
             }
+        }
+        
+        [HttpGet("paginado")]
+        [ProducesResponseType(typeof(PageResult<Usuario.UsuarioResponse>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<PageResult<Usuario.UsuarioResponse>>> GetPaged(
+            [FromQuery] int page = 1,
+            [FromQuery] int pageSize = 10,
+            [FromQuery] string? search = null,
+            [FromQuery] string? sortBy = "Nome",
+            [FromQuery] string? sortDir = "Asc"
+        )
+        {
+
+            var all = await _usuarioRepository.GetAllAsync();
+            var q = all.AsQueryable();
+            
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                var s = search.Trim().ToLower();
+                q = q.Where(u => u.Nome.ToLower().Contains(s) || u.Email.ToLower().Contains(s));
+            }
+            
+            var asc = string.Equals(sortDir, "Asc", StringComparison.OrdinalIgnoreCase);
+            q = (sortBy?.ToLowerInvariant()) switch
+            {
+                "email"        => asc ? q.OrderBy(u => u.Email)        : q.OrderByDescending(u => u.Email),
+                "datacadastro" => asc ? q.OrderBy(u => u.DataCadastro) : q.OrderByDescending(u => u.DataCadastro),
+                _              => asc ? q.OrderBy(u => u.Nome)         : q.OrderByDescending(u => u.Nome),
+            };
+            
+            if (page <= 0) page = 1;
+            if (pageSize <= 0) pageSize = 10;
+
+            var total = q.LongCount();
+            var items = q.Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Select(u => new Usuario.UsuarioResponse(u.UsuarioId, u.Nome, u.Email))
+                .ToList();
+            
+            var result = new PageResult<Usuario.UsuarioResponse>
+            {
+                Items = items,
+                Total = (int)total,
+                HasMore = page * pageSize < total,
+                Page = page,
+                PageSize = pageSize
+            };
+
+            return Ok(result);
         }
     }
 }

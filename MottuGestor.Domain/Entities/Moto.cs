@@ -57,6 +57,7 @@ namespace MottuGestor.Domain.Entities
             Localizacao = localizacao;
         }
 
+        public record MotoResponse(Guid MotoId, string Placa, string Modelo, string RfidTag, string Status, string Localizacao);
 
     }
 }

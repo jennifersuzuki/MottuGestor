@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MottuGestor.API.Models;
 using MottuGestor.Domain.Entities;
+using MottuGestor.Domain.Pagination;
 using MottuGestor.Infrastructure.Repositories;
 
 namespace MottuGestor.API.Controllers
@@ -137,6 +138,61 @@ namespace MottuGestor.API.Controllers
             {
                 return BadRequest($"Erro ao excluir pátio: {ex.Message}");
             }
+        }
+        
+        [HttpGet("paginado")]
+        [ProducesResponseType(typeof(PageResult<Patio.PatioResponse>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<PageResult<Patio.PatioResponse>>> GetPaged(
+            [FromQuery] int page = 1,
+            [FromQuery] int pageSize = 10,
+            [FromQuery] string? search = null,
+            [FromQuery] string? sortBy = "Nome",
+            [FromQuery] string? sortDir = "Asc"
+        )
+        {
+
+            var all = await _patioRepository.GetAllAsync();
+            var q = all.AsQueryable();
+            
+            var asc = string.Equals(sortDir, "Asc", StringComparison.OrdinalIgnoreCase);
+            q = (sortBy?.ToLowerInvariant()) switch
+            {
+                "capacidade" => asc ? q.OrderBy(p => p.Capacidade) : q.OrderByDescending(p => p.Capacidade),
+                "id"         => asc ? q.OrderBy(p => p.Id)         : q.OrderByDescending(p => p.Id),
+                _            => asc ? q.OrderBy(p => p.Nome)       : q.OrderByDescending(p => p.Nome),
+            };
+            
+            if (page <= 0) page = 1;
+            if (pageSize <= 0) pageSize = 10;
+
+            var total = q.LongCount();
+            var temp = q
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Select(p => new {
+                    p.Id,
+                    p.Nome,
+                    Rua    = p.Endereco.Rua,
+                    Cidade = p.Endereco.Cidade,
+                    Cep    = p.Endereco.Cep,
+                    p.Capacidade
+                })
+                .ToList(); // materializa
+
+            var items = temp.Select(t => new Patio.PatioResponse(
+                t.Id, t.Nome, $"{t.Rua}|{t.Cidade}|{t.Cep}", t.Capacidade)).ToList();
+
+            
+            var result = new PageResult<Patio.PatioResponse>
+            {
+                Items = items,
+                Total = (int)total,
+                HasMore = page * pageSize < total,
+                Page = page,
+                PageSize = pageSize
+            };
+
+            return Ok(result);
         }
     }
 }

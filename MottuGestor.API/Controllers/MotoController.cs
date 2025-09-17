@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MottuGestor.API.Models;
 using MottuGestor.Domain.Entities;
 using MottuGestor.Domain.Enums;
+using MottuGestor.Domain.Pagination;
 using MottuGestor.Infrastructure.Repositories;
 
 namespace MottuGestor.API.Controllers
@@ -164,5 +165,65 @@ namespace MottuGestor.API.Controllers
                 return BadRequest($"Erro ao excluir moto: {ex.Message}");
             }
         }
+        
+        [HttpGet("paginado")]
+        [ProducesResponseType(typeof(PageResult<Moto.MotoResponse>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<PageResult<Moto.MotoResponse>>> GetPaged(
+            [FromQuery] int page = 1,
+            [FromQuery] int pageSize = 10,
+            [FromQuery] string? search = null,
+            [FromQuery] string? sortBy = "DataCadastro",
+            [FromQuery] string? sortDir = "Desc"
+        )
+        {
+
+            var all = await _motoRepository.GetAllAsync();
+            var q = all.AsQueryable();
+            
+            var asc = string.Equals(sortDir, "Asc", StringComparison.OrdinalIgnoreCase);
+            q = (sortBy?.ToLowerInvariant()) switch
+            {
+                "placa"        => asc ? q.OrderBy(m => m.Placa)        : q.OrderByDescending(m => m.Placa),
+                "modelo"       => asc ? q.OrderBy(m => m.Modelo)       : q.OrderByDescending(m => m.Modelo),
+                "marca"        => asc ? q.OrderBy(m => m.Marca)        : q.OrderByDescending(m => m.Marca),
+                "ano"          => asc ? q.OrderBy(m => m.Ano)          : q.OrderByDescending(m => m.Ano),
+                "status"       => asc ? q.OrderBy(m => m.Status)       : q.OrderByDescending(m => m.Status),
+                "datacadastro" => asc ? q.OrderBy(m => m.DataCadastro) : q.OrderByDescending(m => m.DataCadastro),
+                _              => asc ? q.OrderBy(m => m.DataCadastro) : q.OrderByDescending(m => m.DataCadastro),
+            };
+            
+            if (page <= 0) page = 1;
+            if (pageSize <= 0) pageSize = 10;
+
+            var total = q.LongCount();
+
+            var pageEntities = q
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            var items = pageEntities
+                .Select(m => new Moto.MotoResponse(
+                    m.MotoId,
+                    m.Placa,
+                    m.Modelo,
+                    m.RfidTag,
+                    m.Status.ToString(),
+                    m.Localizacao ?? string.Empty
+                ))
+                .ToList();
+
+            var result = new PageResult<Moto.MotoResponse>
+            {
+                Items = items,
+                Total = (int)total,
+                HasMore = page * pageSize < total,
+                Page = page,
+                PageSize = pageSize
+            };
+
+            return Ok(result);
+        }
+
     }
 }

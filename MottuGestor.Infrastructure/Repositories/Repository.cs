@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Immutable;
+using Microsoft.EntityFrameworkCore;
 using MottuGestor.Domain.Entities;
+using MottuGestor.Domain.Pagination;
 using MottuGestor.Infrastructure.Context;
 
 namespace MottuGestor.Infrastructure.Repositories
@@ -59,7 +61,6 @@ namespace MottuGestor.Infrastructure.Repositories
                 _dbSet.Remove(entity);
             }
         }
-
-
+        
     }
 }

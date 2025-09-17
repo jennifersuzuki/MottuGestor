@@ -10,7 +10,7 @@ namespace MottuGestor.Infrastructure.Context
         {
             var optionsBuilder = new DbContextOptionsBuilder<GestMottuContext>();
             
-            optionsBuilder.UseSqlServer("Server=localhost;Database=MottuGestorDb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=sqlserver-mottugestor;Database=mottugestordb;Trusted_Connection=True;");
 
             return new GestMottuContext(optionsBuilder.Options);
         }

@@ -48,7 +48,7 @@ az group create --name rg-dotnet --location brazilsouth
 az sql server create -l brazilsouth -g rg-dotnet -n sqlserver-mottugestor -u admsql -p Fiap@2025 --enable-public-network true
 az sql db create -g rg-dotnet -s sqlserver-mottugestor -n mottugestordb --service-objective Free --backup-storage-redundancy Local --zone-redundant false
 
-3. Adicionar regra de firewall
+# 3. Adicionar regra de firewall
 az sql server firewall-rule create -g rg-dotnet -s sqlserver-mottugestor -n AllowAll --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
 
 # 4. Criar o Web App
@@ -60,11 +60,11 @@ az webapp create \
   --deployment-source-url "https://github.com/jenniesuzuki/MottuGestor" \
   --deployment-source-branch "main"
 
-5. Acessar o banco de dados Azure criado com as credenciais
+# 5. Acessar o banco de dados Azure criado com as credenciais
 User: admsql
 Password: Fiap@2025
 
-6. Criar as tabelas com o script_bd.sql
+# 6. Criar as tabelas com o script_bd.sql
 
 # 7. Clonar o repositório
 git clone https://github.com/jenniesuzuki/MottuGestor.git

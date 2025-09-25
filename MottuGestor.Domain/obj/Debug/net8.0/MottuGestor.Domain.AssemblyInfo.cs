@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MottuGestor.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+af2d32e49209a5cb3de55515b90307471f94c002")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bb5bc476205c7940613fe826cdf0b78ea17d3065")]
 [assembly: System.Reflection.AssemblyProductAttribute("MottuGestor.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MottuGestor.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

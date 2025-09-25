@@ -10,7 +10,7 @@ namespace MottuGestor.Infrastructure.Context
         {
             var optionsBuilder = new DbContextOptionsBuilder<GestMottuContext>();
             
-            optionsBuilder.UseSqlServer("Server=sqlserver-mottugestor;Database=mottugestordb;Trusted_Connection=True;");
+            optionsBuilder.UseOracle("User ID=rm556426;Password=300103;Data Source=oracle.fiap.com.br:1521/orcl;");
 
             return new GestMottuContext(optionsBuilder.Options);
         }

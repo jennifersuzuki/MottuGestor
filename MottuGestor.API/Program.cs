@@ -43,7 +43,7 @@ namespace GestMottu.API
             });
 
             builder.Services.AddDbContext<GestMottuContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseOracle(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Registrar repositório genérico para todas as entidades
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));

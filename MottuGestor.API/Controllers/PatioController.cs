@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MottuGestor.API.Models;
 using MottuGestor.Domain.Entities;
 using MottuGestor.Domain.Pagination;
@@ -12,10 +13,12 @@ namespace MottuGestor.API.Controllers
     public class PatioController : ControllerBase
     {
         private readonly IRepository<Patio> _patioRepository;
+        private readonly LinkGenerator _links;
 
-        public PatioController(IRepository<Patio> patioRepository)
+        public PatioController(IRepository<Patio> patioRepository, LinkGenerator links)
         {
             _patioRepository = patioRepository;
+            _links = links;
         }
 
         // [GET] /patio
@@ -140,20 +143,36 @@ namespace MottuGestor.API.Controllers
             }
         }
         
-        [HttpGet("paginado")]
-        [ProducesResponseType(typeof(PageResult<Patio.PatioResponse>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<PageResult<Patio.PatioResponse>>> GetPaged(
+        [HttpGet("paginado", Name = "GetPatiosPaged")]
+        [Produces("application/hal+json")]
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetPaged(
             [FromQuery] int page = 1,
             [FromQuery] int pageSize = 10,
             [FromQuery] string? search = null,
             [FromQuery] string? sortBy = "Nome",
-            [FromQuery] string? sortDir = "Asc"
+            [FromQuery] string? sortDir = "Asc",
+            CancellationToken ct = default
         )
         {
-
             var all = await _patioRepository.GetAllAsync();
             var q = all.AsQueryable();
-            
+
+            // FILTRO (sem ?. dentro da expressão)
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                var s = $"%{search.Trim()}%";
+                q = q.Where(p =>
+                    EF.Functions.Like((p.Nome ?? string.Empty), s) ||
+                    (p.Endereco != null && (
+                        EF.Functions.Like((p.Endereco.Rua    ?? string.Empty), s) ||
+                        EF.Functions.Like((p.Endereco.Cidade ?? string.Empty), s) ||
+                        EF.Functions.Like((p.Endereco.Cep    ?? string.Empty), s)
+                    ))
+                );
+            }
+
+            // ORDENAÇÃO
             var asc = string.Equals(sortDir, "Asc", StringComparison.OrdinalIgnoreCase);
             q = (sortBy?.ToLowerInvariant()) switch
             {
@@ -161,38 +180,72 @@ namespace MottuGestor.API.Controllers
                 "id"         => asc ? q.OrderBy(p => p.Id)         : q.OrderByDescending(p => p.Id),
                 _            => asc ? q.OrderBy(p => p.Nome)       : q.OrderByDescending(p => p.Nome),
             };
-            
+
             if (page <= 0) page = 1;
             if (pageSize <= 0) pageSize = 10;
 
             var total = q.LongCount();
-            var temp = q
-                .Skip((page - 1) * pageSize)
+            var totalPages = (int)Math.Ceiling(total / (double)pageSize);
+            if (totalPages == 0) totalPages = 1;
+            var selfPage = Math.Clamp(page, 1, totalPages);
+
+            // PROJEÇÃO (sem ?. — use operador ternário)
+            var pageSlice = q
+                .Skip((selfPage - 1) * pageSize)
                 .Take(pageSize)
-                .Select(p => new {
+                .Select(p => new
+                {
                     p.Id,
                     p.Nome,
-                    Rua    = p.Endereco.Rua,
-                    Cidade = p.Endereco.Cidade,
-                    Cep    = p.Endereco.Cep,
+                    Rua    = (p.Endereco != null ? p.Endereco.Rua    : string.Empty),
+                    Cidade = (p.Endereco != null ? p.Endereco.Cidade : string.Empty),
+                    Cep    = (p.Endereco != null ? p.Endereco.Cep    : string.Empty),
                     p.Capacidade
                 })
-                .ToList(); // materializa
+                .ToList();
 
-            var items = temp.Select(t => new Patio.PatioResponse(
-                t.Id, t.Nome, $"{t.Rua}|{t.Cidade}|{t.Cep}", t.Capacidade)).ToList();
+            var items = pageSlice
+                .Select(t => new Patio.PatioResponse(
+                    t.Id,
+                    t.Nome,
+                    $"{t.Rua}|{t.Cidade}|{t.Cep}",
+                    t.Capacidade))
+                .ToList();
 
-            
-            var result = new PageResult<Patio.PatioResponse>
+            // LINKS HATEOAS
+            string? LinkTo(int targetPage) => _links.GetUriByName(
+                HttpContext,
+                "GetPatiosPaged",
+                new { page = targetPage, pageSize, search, sortBy, sortDir });
+
+            var linkSelf  = LinkTo(selfPage);
+            var linkFirst = LinkTo(1);
+            var linkLast  = LinkTo(totalPages);
+            var linkPrev  = selfPage > 1          ? LinkTo(selfPage - 1) : null;
+            var linkNext  = selfPage < totalPages ? LinkTo(selfPage + 1) : null;
+
+            var links = new Dictionary<string, object>();
+            if (linkSelf  is not null) links["self"]  = new { href = linkSelf  };
+            if (linkFirst is not null) links["first"] = new { href = linkFirst };
+            if (linkPrev  is not null) links["prev"]  = new { href = linkPrev  };
+            if (linkNext  is not null) links["next"]  = new { href = linkNext  };
+            if (linkLast  is not null) links["last"]  = new { href = linkLast  };
+
+            var body = new
             {
-                Items = items,
-                Total = (int)total,
-                HasMore = page * pageSize < total,
-                Page = page,
-                PageSize = pageSize
+                _embedded = new { patios = items },
+                _links = links,
+                page = new
+                {
+                    size = pageSize,
+                    totalElements = total,
+                    totalPages,
+                    number = selfPage - 1
+                }
             };
 
-            return Ok(result);
+            return Ok(body);
         }
+
     }
 }

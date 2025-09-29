@@ -19,10 +19,12 @@ namespace MottuGestor.API.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly IRepository<Usuario> _usuarioRepository;
+        private readonly LinkGenerator _links;
 
-        public UsuarioController(IRepository<Usuario> usuarioRepository)
+        public UsuarioController(IRepository<Usuario> usuarioRepository, LinkGenerator links)
         {
             _usuarioRepository = usuarioRepository;
+            _links = links;
         }
 
         // ============================
@@ -172,26 +174,29 @@ namespace MottuGestor.API.Controllers
             }
         }
         
-        [HttpGet("paginado")]
-        [ProducesResponseType(typeof(PageResult<Usuario.UsuarioResponse>), StatusCodes.Status200OK)]
-        public async Task<ActionResult<PageResult<Usuario.UsuarioResponse>>> GetPaged(
+        [HttpGet("paginado", Name = "GetUsuariosPaged")]                  // <-- nome da rota
+        [Produces("application/hal+json")]                                 // <-- HAL
+        [ProducesResponseType(typeof(object), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetPaged(
             [FromQuery] int page = 1,
             [FromQuery] int pageSize = 10,
             [FromQuery] string? search = null,
             [FromQuery] string? sortBy = "Nome",
-            [FromQuery] string? sortDir = "Asc"
+            [FromQuery] string? sortDir = "Asc",
+            CancellationToken ct = default
         )
         {
-
             var all = await _usuarioRepository.GetAllAsync();
             var q = all.AsQueryable();
-            
+
+            // filtro simples
             if (!string.IsNullOrWhiteSpace(search))
             {
                 var s = search.Trim().ToLower();
                 q = q.Where(u => u.Nome.ToLower().Contains(s) || u.Email.ToLower().Contains(s));
             }
-            
+
+            // ordenação
             var asc = string.Equals(sortDir, "Asc", StringComparison.OrdinalIgnoreCase);
             q = (sortBy?.ToLowerInvariant()) switch
             {
@@ -199,26 +204,54 @@ namespace MottuGestor.API.Controllers
                 "datacadastro" => asc ? q.OrderBy(u => u.DataCadastro) : q.OrderByDescending(u => u.DataCadastro),
                 _              => asc ? q.OrderBy(u => u.Nome)         : q.OrderByDescending(u => u.Nome),
             };
-            
+
             if (page <= 0) page = 1;
             if (pageSize <= 0) pageSize = 10;
 
             var total = q.LongCount();
-            var items = q.Skip((page - 1) * pageSize)
+            var totalPages = (int)Math.Ceiling(total / (double)pageSize);
+            if (totalPages == 0) totalPages = 1; // evita divisão por zero
+            var selfPage = Math.Clamp(page, 1, totalPages);
+
+            var pageItems = q
+                .Skip((selfPage - 1) * pageSize)
                 .Take(pageSize)
                 .Select(u => new Usuario.UsuarioResponse(u.UsuarioId, u.Nome, u.Email))
                 .ToList();
-            
-            var result = new PageResult<Usuario.UsuarioResponse>
+
+            // helpers de link (usando rota nomeada acima)
+            string? LinkTo(int targetPage) => _links.GetUriByName(
+                HttpContext,
+                "GetUsuariosPaged",
+                new { page = targetPage, pageSize, search, sortBy, sortDir });
+
+            var linkSelf  = LinkTo(selfPage);
+            var linkFirst = LinkTo(1);
+            var linkLast  = LinkTo(totalPages);
+            var linkPrev  = selfPage > 1          ? LinkTo(selfPage - 1) : null;
+            var linkNext  = selfPage < totalPages ? LinkTo(selfPage + 1) : null;
+
+            var links = new Dictionary<string, object>();
+            if (linkSelf  is not null) links["self"]  = new { href = linkSelf  };
+            if (linkFirst is not null) links["first"] = new { href = linkFirst };
+            if (linkPrev  is not null) links["prev"]  = new { href = linkPrev  };
+            if (linkNext  is not null) links["next"]  = new { href = linkNext  };
+            if (linkLast  is not null) links["last"]  = new { href = linkLast  };
+
+            var body = new
             {
-                Items = items,
-                Total = (int)total,
-                HasMore = page * pageSize < total,
-                Page = page,
-                PageSize = pageSize
+                _embedded = new { usuarios = pageItems },
+                _links = links,
+                page = new
+                {
+                    size = pageSize,
+                    totalElements = total,
+                    totalPages,
+                    number = selfPage - 1 // zero-based
+                }
             };
 
-            return Ok(result);
+            return Ok(body);
         }
     }
 }

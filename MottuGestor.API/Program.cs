@@ -47,7 +47,7 @@ namespace GestMottu.API
 
             // Registrar repositório genérico para todas as entidades
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
+            builder.Services.AddScoped<IMotoRepository, MotoRepository>();
             var app = builder.Build();
             
             app.UseSwagger();

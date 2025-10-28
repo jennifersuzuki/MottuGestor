@@ -15,13 +15,10 @@ namespace GestMottu.API
 
             builder.Configuration
                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                   .AddEnvironmentVariables();
+                   .AddEnvironmentVariables(); // lẽ ConnectionStrings:DefaultConnection do App Service
 
             builder.Services.AddControllers()
-                .AddJsonOptions(o =>
-                {
-                    o.JsonSerializerOptions.WriteIndented = true;
-                });;
+                .AddJsonOptions(o => { o.JsonSerializerOptions.WriteIndented = true; });
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(x =>
@@ -30,39 +27,37 @@ namespace GestMottu.API
                 {
                     Title = builder.Configuration["Swagger:Title"] ?? "GestMottu API",
                     Description = "API RESTful para gestão de motos com Clean Architecture e DDD",
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Equipe MottuGestor",
-                        Email = "contato@mottu.com.br"
-                    }
+                    Contact = new OpenApiContact { Name = "Equipe MottuGestor", Email = "contato@mottu.com.br" }
                 });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                x.IncludeXmlComments(xmlPath);
+                if (File.Exists(xmlPath))
+                {
+                    x.IncludeXmlComments(xmlPath);
+                }
             });
 
             builder.Services.AddDbContext<GestMottuContext>(options =>
-                options.UseOracle(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(
+                    builder.Configuration.GetConnectionString("DefaultConnection"),
+                    sql => sql.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null) // resiliente a transientes
+                )
+            );
 
-            // Registrar repositório genérico para todas as entidades
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             builder.Services.AddScoped<IMotoRepository, MotoRepository>();
+
             var app = builder.Build();
-            
+
             app.UseSwagger();
             app.UseSwaggerUI();
-            
-            using (var scope = app.Services.CreateScope())
-            {
-                var context = scope.ServiceProvider.GetRequiredService<GestMottuContext>();
-                context.Database.EnsureCreated();
-            }
 
-            //app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapControllers();
-            app.MapGet("/", () => Results.Redirect("/swagger/index.html"));
+            
+            app.MapGet("/", () => Results.Redirect("/swagger"));
+
             app.Run();
         }
     }

@@ -26,7 +26,7 @@ namespace GestMottu.API
                 x.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = builder.Configuration["Swagger:Title"] ?? "GestMottu API",
-                    Description = "API RESTful para gestão de motos com Clean Architecture e DDD",
+                    Description = "API RESTful para gestão de motos, pátios e usuários.",
                     Contact = new OpenApiContact { Name = "Equipe MottuGestor", Email = "contato@mottu.com.br" }
                 });
 

@@ -7,7 +7,7 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["MottuGestor.API/MottuGestor.API.csproj", "MottuGestor.API/"]
+COPY ["MottuGestor.API.csproj", "MottuGestor.API/"]
 RUN dotnet restore "MottuGestor.API/MottuGestor.API.csproj"
 COPY [".", "MottuGestor.API/"]
 WORKDIR "/src/MottuGestor.API"

@@ -9,7 +9,7 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["MottuGestor.API/MottuGestor.API.csproj", "MottuGestor.API/"]
 RUN dotnet restore "MottuGestor.API/MottuGestor.API.csproj"
-COPY . .
+COPY [".", "MottuGestor.API/"]
 WORKDIR "/src/MottuGestor.API"
 RUN dotnet build "./MottuGestor.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 

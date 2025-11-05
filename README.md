@@ -32,9 +32,8 @@ Criar uma API que permita a gestão completa das motos e pátios da empresa, com
 - .NET 8  
 - C#  
 - Entity Framework Core (EF Core)
-- Oracle Database
+- SQL Database
 - Swagger / OpenAPI  
-- Rider (JetBrains)
 
 ---
 

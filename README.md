@@ -1,6 +1,6 @@
 # MottuGestor
 
-## Projeto: API RESTful para Gestão de Motos e Pátios - Mottu
+## Projeto: API RESTful de Motos e Pátios - Mottu
 
 Este projeto para o Challenge, da disciplina **Devops Tools and Cloud Computing** e tem como objetivo desenvolver uma **API RESTful** utilizando **.NET 8**, **Banco de dados SQL** e **Pipeline com CI/CD**.
 

@@ -2,7 +2,7 @@
 
 ## Projeto: API RESTful para Gestão de Motos e Pátios - Mottu
 
-Este projeto para o Challenge, da disciplina **Advanced Business Development with .NET** e tem como objetivo desenvolver uma **API RESTful** utilizando **.NET 8** e **Banco de dados Oracle**.
+Este projeto para o Challenge, da disciplina **Devops Tools and Cloud Computing** e tem como objetivo desenvolver uma **API RESTful** utilizando **.NET 8**, **Banco de dados SQL** e **Pipeline com CI/CD**.
 
 ## Integrantes
 
@@ -38,30 +38,7 @@ Criar uma API que permita a gestão completa das motos e pátios da empresa, com
 
 ---
 
-## Passo a passo
-
-```bash
-# 1. Clonar o repositório
-git clone https://github.com/jenniesuzuki/MottuGestor.git
-cd MottuGestor
-
-# 2. Ajustar a connection string no appsettings.json (se desejar)
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=tcp:sqlserver-mottugestor.database.windows.net,1433;Initial Catalog=mottugestordb;Persist Security Info=False;User ID=admsql;Password=Fiap@2025;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
-  }
-
-# 3. Restaurar e dar build no projeto
-dotnet restore
-dotnet build
-
-# 4. Aplicar migrations (se o banco de dados for alterado)
-dotnet ef database update --project MottuGestor.Infrastructure --startup-project MottuGestor.API
-
-# 5. Rodar a API
-dotnet run --project MottuGestor.API
-```
-
-#### Swagger: http://localhost:5183/swagger/index.html
+#### Swagger: https://mottugestorapp.azurewebsites.net/swagger/index.html
 
 
 ### Moto
